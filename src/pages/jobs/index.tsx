@@ -15,7 +15,9 @@ const Jobs: NextPage = ({ data }: any) => {
 export async function getServerSideProps({ req }) {
   const res = await fetch(
     `${
-      process.env.ENVIRONMENT ? process.env.LOCAL_URL : process.env.REMOTE_URL
+      process.env.ENVIRONMENT
+        ? process.env.LOCAL_URL
+        : "https://devjobs-xi.vercel.app/"
     }/api/jobs`
   );
   const data = await res.json();

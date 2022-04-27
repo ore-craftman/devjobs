@@ -152,7 +152,7 @@ export async function getServerSideProps({ req }) {
     `${
       process.env.ENVIRONMENT === "local"
         ? process.env.LOCAL_URL
-        : process.env.REMOTE_URL
+        : "https://devjobs-xi.vercel.app/"
     }/api/jobs`
   );
   const data = await res.json();
