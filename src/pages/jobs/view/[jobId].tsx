@@ -152,7 +152,7 @@ export async function getServerSideProps({ req }) {
     `${
       process.env.ENVIRONMENT === "local"
         ? process.env.LOCAL_URL
-        : req.headers.host
+        : process.env.REMOTE_URL
     }/api/jobs`
   );
   const data = await res.json();

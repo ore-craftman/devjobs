@@ -15,7 +15,7 @@ const Jobs: NextPage = ({ data }: any) => {
 export async function getServerSideProps({ req }) {
   const res = await fetch(
     `${
-      process.env.ENVIRONMENT ? process.env.LOCAL_URL : req.headers.host
+      process.env.ENVIRONMENT ? process.env.LOCAL_URL : process.env.REMOTE_URL
     }/api/jobs`
   );
   const data = await res.json();
