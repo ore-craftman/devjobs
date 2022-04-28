@@ -49,7 +49,7 @@ export const AuthWrapper = ({
 
             <Text
               fontSize="xs"
-              color="gray.400"
+              color="gray.700"
               textAlign="end"
               mt="8px"
               fontWeight="medium"
@@ -57,7 +57,7 @@ export const AuthWrapper = ({
               {redirectText + " "}
               <Link href={redirectURL}>
                 <a>
-                  <Button size="xs" variant="link">
+                  <Button size="xs" variant="link" color="blue.600">
                     {redirectHolder}
                   </Button>
                 </a>
