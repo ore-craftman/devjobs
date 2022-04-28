@@ -40,7 +40,7 @@ export const SimpleInput = ({
       </FormLabel>
       <InputGroup>
         <Input
-          size="md"
+          // size="md"
           id={label.split(" ").join("").toLowerCase()}
           type={showPassword ? "text" : type}
           value={value && value}
