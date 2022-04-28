@@ -112,12 +112,16 @@ const ViewJob = ({ job }) => {
       >
         <Container maxWidth="container.md">
           <Box
-            display={{ md: "flex" }}
+            display="flex"
             justifyContent="space-between"
             alignItems="center"
           >
             <VStack align="start">
-              <Heading as="h1" fontSize="md">
+              <Heading
+                as="h1"
+                fontSize={{ base: "sm", md: "md" }}
+                color="gray.800"
+              >
                 {job.title
                   .split(" ")
                   .map((title) => title[0].toUpperCase() + title.slice(1))
@@ -134,6 +138,7 @@ const ViewJob = ({ job }) => {
                 colorScheme="blue"
                 bgColor="bsBlue"
                 borderRadius="4px"
+                color="white"
               >
                 <a href={`https://${job.applicationURL}`} target="_blank">
                   Apply Now
