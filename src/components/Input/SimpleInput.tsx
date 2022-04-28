@@ -13,9 +13,17 @@ interface PropSchema {
   label: string;
   holder: string;
   type: string;
+  value?: any;
+  stateHandler?: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export const SimpleInput = ({ label, holder, type }: PropSchema) => {
+export const SimpleInput = ({
+  label,
+  holder,
+  type,
+  value,
+  stateHandler,
+}: PropSchema) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const showHandler = () => {
@@ -35,6 +43,8 @@ export const SimpleInput = ({ label, holder, type }: PropSchema) => {
           size="md"
           id={label.split(" ").join("").toLowerCase()}
           type={showPassword ? "text" : type}
+          value={value && value}
+          onChange={(e) => stateHandler && stateHandler(e.target.value)}
           fontSize="md"
           placeholder={holder}
           borderColor="gray.200"

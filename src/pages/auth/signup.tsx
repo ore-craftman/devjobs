@@ -19,12 +19,22 @@ const SignUp = () => {
       <Container maxWidth="container.lg" h="100%" color="gray.700">
         <Center h="100%">
           <Box
-            w={{ base: "90%", md: "50%", lg: "40%" }}
+            w={{ base: "100%", md: "50%", lg: "40%" }}
             minHeight="60%"
             bgColor="whiteAlpha.900"
             borderRadius="2xl"
-            p={["16px", "1.7em"]}
+            p={["1em", "2em"]}
           >
+            <Heading
+              as="h2"
+              mb="1.4em"
+              textAlign="center"
+              fontSize={{ base: "sm", md: "md" }}
+              bgGradient="linear(to-r, #7928CA, #FF0080)"
+              bgClip="text"
+            >
+              {"Create An Account"}
+            </Heading>
             <Flex
               justifyContent={["space-around", "space-between"]}
               mb="1.5em"
@@ -55,17 +65,7 @@ const SignUp = () => {
               </Button>
             </Flex>
 
-            <VStack align="center" w="100%">
-              <Heading
-                as="h2"
-                mb="0.5em"
-                fontSize={{ base: "sm", md: "md" }}
-                bgGradient="linear(to-r, #7928CA, #FF0080)"
-                bgClip="text"
-              >
-                {"Create An Account"}
-              </Heading>
-
+            <VStack align="center" w="100%" my="0.5em">
               {companyForm ? <Text>Working on it</Text> : <TalentForm />}
             </VStack>
           </Box>
