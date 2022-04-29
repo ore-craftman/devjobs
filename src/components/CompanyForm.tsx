@@ -7,6 +7,8 @@ export const ComapnyForm = () => {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [companyURL, setCompanyURL] = useState("");
   const [initLoader, setInitLoader] = useState(false);
 
   const signupHandler = (e) => {
@@ -15,7 +17,14 @@ export const ComapnyForm = () => {
 
     // TODO: Store Data
     setTimeout(() => {
-      console.table({ firstname, lastname, email, password });
+      console.table({
+        firstname,
+        lastname,
+        email,
+        password,
+        companyName,
+        companyURL,
+      });
       setInitLoader(false);
     }, 1000);
   };
@@ -42,13 +51,28 @@ export const ComapnyForm = () => {
           />
         </Box>
       </Flex>
-      <SimpleInput
-        label="Company Email"
-        holder="Enter email address"
-        type="email"
-        value={email}
-        stateHandler={setEmail}
-      />
+
+      <Flex justify="space-between">
+        <Box w="48%">
+          <SimpleInput
+            label="Company Email"
+            holder="hi@meta.com"
+            type="email"
+            value={email}
+            stateHandler={setEmail}
+          />
+        </Box>
+
+        <Box w="48%">
+          <SimpleInput
+            label="Company Name"
+            holder="meta"
+            type="text"
+            value={companyName}
+            stateHandler={setCompanyName}
+          />
+        </Box>
+      </Flex>
 
       <SimpleInput
         label="Password"
@@ -56,6 +80,15 @@ export const ComapnyForm = () => {
         type="password"
         value={password}
         stateHandler={setPassword}
+      />
+
+      <SimpleInput
+        URL={true}
+        label="Company URL"
+        holder="meta.com"
+        type="text"
+        value={companyURL}
+        stateHandler={setCompanyURL}
       />
 
       <Button

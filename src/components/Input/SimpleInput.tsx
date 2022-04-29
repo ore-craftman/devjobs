@@ -4,6 +4,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -14,6 +15,7 @@ interface PropSchema {
   holder: string;
   type: string;
   value?: any;
+  URL?: boolean;
   stateHandler?: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -22,6 +24,7 @@ export const SimpleInput = ({
   holder,
   type,
   value,
+  URL,
   stateHandler,
 }: PropSchema) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -39,8 +42,8 @@ export const SimpleInput = ({
         {label}
       </FormLabel>
       <InputGroup>
+        {URL && <InputLeftAddon bgColor="gray.200" children="https://" />}
         <Input
-          // size="md"
           id={label.split(" ").join("").toLowerCase()}
           type={showPassword ? "text" : type}
           value={value && value}
