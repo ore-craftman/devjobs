@@ -21,6 +21,7 @@ export const LoginForm = () => {
   return (
     <form onSubmit={siginHandler}>
       <SimpleInput
+        required={true}
         label="Email"
         holder="Enter email address"
         type="email"
@@ -29,6 +30,7 @@ export const LoginForm = () => {
       />
 
       <SimpleInput
+        required={true}
         label="Password"
         holder="New password"
         type="password"

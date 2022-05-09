@@ -11,10 +11,11 @@ import { useState } from "react";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 interface PropSchema {
-  label: string;
+  label?: string;
+  required: boolean;
   holder: string;
   type: string;
-  value?: any;
+  value: any;
   URL?: boolean;
   stateHandler?: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -25,6 +26,7 @@ export const SimpleInput = ({
   type,
   value,
   URL,
+  required,
   stateHandler,
 }: PropSchema) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,18 +44,31 @@ export const SimpleInput = ({
         {label}
       </FormLabel>
       <InputGroup>
-        {URL && <InputLeftAddon bgColor="gray.200" children="https://" />}
+        {URL && (
+          <InputLeftAddon
+            bgColor="gray.200"
+            _dark={{
+              bgColor: "gray.500",
+              border: "1px",
+            }}
+            children="https://"
+          />
+        )}
         <Input
           id={label.split(" ").join("").toLowerCase()}
           type={showPassword ? "text" : type}
           value={value && value}
           onChange={(e) => stateHandler && stateHandler(e.target.value)}
           fontSize="md"
+          isRequired={required}
           placeholder={holder}
           borderColor="gray.200"
           borderRadius="4px"
           _hover={{ borderColor: "gray.300" }}
           _placeholder={{ color: "gray.400" }}
+          _focus={{
+            borderColor: value.length == "" && required ? "tomato" : "gray.200",
+          }}
         />
         {type === "password" && (
           <InputRightElement

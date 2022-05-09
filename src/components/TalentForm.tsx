@@ -24,6 +24,7 @@ export const TalentForm = () => {
       <Flex justify="space-between">
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="First Name"
             holder="John"
             type="text"
@@ -34,6 +35,7 @@ export const TalentForm = () => {
 
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="Last Name"
             holder="Doe"
             type="text"
@@ -43,6 +45,7 @@ export const TalentForm = () => {
         </Box>
       </Flex>
       <SimpleInput
+        required={true}
         label="Email"
         holder="Enter email address"
         type="email"
@@ -51,6 +54,7 @@ export const TalentForm = () => {
       />
 
       <SimpleInput
+        required={true}
         label="Password"
         holder="New password"
         type="password"

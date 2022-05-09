@@ -33,6 +33,7 @@ export const ComapnyForm = () => {
       <Flex justify="space-between">
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="First Name"
             holder="John"
             type="text"
@@ -43,6 +44,7 @@ export const ComapnyForm = () => {
 
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="Last Name"
             holder="Doe"
             type="text"
@@ -55,6 +57,7 @@ export const ComapnyForm = () => {
       <Flex justify="space-between">
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="Company Email"
             holder="hi@meta.com"
             type="email"
@@ -65,6 +68,7 @@ export const ComapnyForm = () => {
 
         <Box w="48%">
           <SimpleInput
+            required={true}
             label="Company Name"
             holder="meta"
             type="text"
@@ -75,6 +79,7 @@ export const ComapnyForm = () => {
       </Flex>
 
       <SimpleInput
+        required={true}
         label="Password"
         holder="New password"
         type="password"
@@ -83,6 +88,7 @@ export const ComapnyForm = () => {
       />
 
       <SimpleInput
+        required={true}
         URL={true}
         label="Company URL"
         holder="meta.com"
