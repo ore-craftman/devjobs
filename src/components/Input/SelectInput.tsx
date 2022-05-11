@@ -64,7 +64,7 @@ export const SelectInput = ({
         >
           {options.map((optn, i) => {
             return (
-              <option key={i} value={optn.split(" ").join("-")}>
+              <option key={i} value={optn}>
                 {optn}
               </option>
             );
