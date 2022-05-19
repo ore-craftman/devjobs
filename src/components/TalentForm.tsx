@@ -15,11 +15,11 @@ export const TalentForm = () => {
     setInitLoader(true);
 
     // TODO: Store Data
-    setTimeout(() => {
-      console.log({ firstname, lastname, email, password });
-      setInitLoader(false);
-      setErr(true);
-    }, 1000);
+    // setTimeout(() => {
+    //   console.log({ firstname, lastname, email, password });
+    //   setInitLoader(false);
+    //   setErr(true);
+    // }, 1000);
   };
 
   return (
