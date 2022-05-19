@@ -11,7 +11,7 @@
     "@chakra-ui/theme-tools": "1.1.2",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "framer-motion": "^4.0.3",
     "moment": "^2.29.3",
     "next": "latest",
