@@ -23,10 +23,6 @@ export const Header = () => {
               </Link>
             </Box>
 
-            <Box ml="1em">
-              <DarkModeSwitch />
-            </Box>
-
             <Box
               display="flex"
               ml={["1em", "auto"]}
@@ -34,6 +30,8 @@ export const Header = () => {
               justifyContent="space-between"
               alignItems="center"
             >
+              <DarkModeSwitch />
+
               <Link href="/">
                 <a>
                   <Text color="white" _hover={{ color: "whiteAlpha.600" }}>
