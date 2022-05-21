@@ -1,43 +1,90 @@
 import axios from "axios";
-import { Flex, Box, Button, Alert, AlertIcon, Slide } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Button,
+  Alert,
+  AlertIcon,
+  Slide,
+  Text,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { SimpleInput } from "./Input/SimpleInput";
+import { useRouter } from "next/router";
+
 export const TalentForm = () => {
+  const router = useRouter();
+
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [initLoader, setInitLoader] = useState(false);
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState(null);
 
-  const signupHandler = (e) => {
+  const signupHandler = async (e) => {
     e.preventDefault();
     setInitLoader(true);
 
+    if (password.length < 8) {
+      setInitLoader(false);
+      return setErr("Password must be at least 8 characters");
+    }
+
     // TODO: Store Data
-    // setTimeout(() => {
-    //   console.log({ firstname, lastname, email, password });
-    //   setInitLoader(false);
-    //   setErr(true);
-    // }, 1000);
+    const userData = {
+      firstname,
+      lastname,
+      email,
+      password,
+      keyMaster: false,
+    };
+
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_USERS_ENDPOINT}/create`,
+      userData
+    );
+
+    if (res.status === 200) {
+      const { status, data } = res.data;
+
+      if (status !== "OK") {
+        setErr(data);
+      } else {
+        let date = new Date();
+        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+        document.cookie = `UID=${
+          data._id
+        }; expires=${date.toUTCString()}; path=/`;
+        router.push("/jobs");
+      }
+    } else {
+      setErr("Oops.. something went wrong");
+    }
+
+    setInitLoader(false);
   };
 
   return (
     <Box>
-      <Slide in={err} style={{ zIndex: 10 }}>
-        <Alert
-          borderLeftRadius="6px"
-          status="warning"
-          position="absolute"
-          top="1"
-          w={["100%", "40%", "28%"]}
-          right="0"
-        >
-          <AlertIcon />
-          Seems your account is about expire, upgrade now
-        </Alert>
-      </Slide>
-      <form onSubmit={signupHandler}>
+      {err && (
+        <Slide in={err}>
+          <Alert
+            borderLeftRadius="6px"
+            status="warning"
+            position="absolute"
+            top="1"
+            w={["100%", "40%", "28%"]}
+            right="0"
+            boxShadow="xl"
+            fontWeight="medium"
+          >
+            <AlertIcon />
+            {err}
+          </Alert>
+        </Slide>
+      )}
+      <form onSubmit={signupHandler} style={{ zIndex: "10" }}>
         <Flex justify="space-between">
           <Box w="48%">
             <SimpleInput
@@ -78,6 +125,11 @@ export const TalentForm = () => {
           value={password}
           stateHandler={setPassword}
         />
+        {password !== "" && password.length < 8 && (
+          <Text fontSize="xs" color="orange.500">
+            Password should be at least 8 characters
+          </Text>
+        )}
 
         <Button
           w="100%"

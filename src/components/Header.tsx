@@ -56,7 +56,7 @@ export const Header = () => {
               />
               <Stack
                 direction={["column", "row"]}
-                justifyContent={["space-evenly", "space-between"]}
+                justifyContent={["", "space-between"]}
                 alignItems="center"
                 display={[showNav ? "flex" : "none", "flex"]}
                 boxShadow={["2xl", "none"]}
@@ -70,7 +70,12 @@ export const Header = () => {
               >
                 <Link href="/">
                   <a>
-                    <Text color="white" _hover={{ color: "whiteAlpha.600" }}>
+                    <Text
+                      mt={["6em", "0em"]}
+                      color="white"
+                      _hover={{ color: "whiteAlpha.600" }}
+                      pr={["2em", "0em"]}
+                    >
                       Home
                     </Text>
                   </a>
@@ -78,13 +83,27 @@ export const Header = () => {
 
                 <Link href="/jobs">
                   <a>
-                    <Text color="white">Jobs</Text>
+                    <Text
+                      my={["1.2em", "0em"]}
+                      pr={["2.6em", "0em"]}
+                      color="white"
+                      _hover={{ color: "whiteAlpha.600" }}
+                    >
+                      Jobs
+                    </Text>
                   </a>
                 </Link>
 
                 <Link href="/auth/signin">
                   <a>
-                    <Text color="white">Sign In</Text>
+                    <Text
+                      my={["1em", "0em"]}
+                      pr={["2em", "0em"]}
+                      color="white"
+                      _hover={{ color: "whiteAlpha.600" }}
+                    >
+                      Sign In
+                    </Text>
                   </a>
                 </Link>
 
@@ -94,6 +113,7 @@ export const Header = () => {
                       bgColor="white"
                       color="gray.700"
                       fontWeight="medium"
+                      my={["1em", "0em"]}
                     >
                       Sign Up
                     </Button>
