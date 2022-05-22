@@ -13,9 +13,13 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
+import { useSession } from "../hooks/useSession";
 
 export const Header = () => {
   const [showNav, setShowNav] = useState(false);
+
+  const [userInstance] = useSession();
+  console.log({ userInstance });
 
   return (
     <header>
@@ -40,7 +44,7 @@ export const Header = () => {
             <Box
               display="flex"
               ml={["1em", "auto"]}
-              w={["50%", "50%", "35%"]}
+              w={["50%", "50%", "45%"]}
               justifyContent={["end", "space-between"]}
               alignItems="center"
             >
@@ -94,31 +98,48 @@ export const Header = () => {
                   </a>
                 </Link>
 
-                <Link href="/auth/signin">
-                  <a>
-                    <Text
-                      my={["1em", "0em"]}
-                      pr={["2em", "0em"]}
-                      color="white"
-                      _hover={{ color: "whiteAlpha.600" }}
-                    >
-                      Sign In
-                    </Text>
-                  </a>
-                </Link>
+                {userInstance.firstname !== "" ? (
+                  <Text my={["1em", "0em"]} pr={["2em", "0em"]} color="white">
+                    {`Hi, ${userInstance.firstname}`}
+                  </Text>
+                ) : (
+                  <Link href="/auth/signin">
+                    <a>
+                      <Text
+                        my={["1em", "0em"]}
+                        pr={["2em", "0em"]}
+                        color="white"
+                        _hover={{ color: "whiteAlpha.600" }}
+                      >
+                        Sign In
+                      </Text>
+                    </a>
+                  </Link>
+                )}
 
-                <Link href="/auth/signup">
-                  <a>
-                    <Button
-                      bgColor="white"
-                      color="gray.700"
-                      fontWeight="medium"
-                      my={["1em", "0em"]}
-                    >
-                      Sign Up
-                    </Button>
-                  </a>
-                </Link>
+                {userInstance.firstname === "" ? (
+                  <Link href="/auth/signup">
+                    <a>
+                      <Button
+                        bgColor="white"
+                        color="gray.700"
+                        fontWeight="medium"
+                        my={["1em", "0em"]}
+                      >
+                        Sign Up
+                      </Button>
+                    </a>
+                  </Link>
+                ) : (
+                  <Button
+                    bgColor="white"
+                    color="gray.700"
+                    fontWeight="medium"
+                    my={["1em", "0em"]}
+                  >
+                    Sign Out
+                  </Button>
+                )}
               </Stack>
             </Box>
           </Flex>
