@@ -9,7 +9,7 @@ import {
   Button,
   IconButton,
   Stack,
-  Slide,
+  Spacer,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -17,9 +17,7 @@ import { useSession } from "../hooks/useSession";
 
 export const Header = () => {
   const [showNav, setShowNav] = useState(false);
-
   const [userInstance] = useSession();
-  console.log({ userInstance });
 
   return (
     <header>
@@ -48,6 +46,7 @@ export const Header = () => {
               justifyContent={["end", "space-between"]}
               alignItems="center"
             >
+              <Spacer />
               <DarkModeSwitch />
 
               <IconButton
@@ -85,21 +84,19 @@ export const Header = () => {
                   </a>
                 </Link>
 
-                <Link href="/jobs">
-                  <a>
-                    <Text
-                      my={["1.2em", "0em"]}
-                      pr={["2.6em", "0em"]}
-                      color="white"
-                      _hover={{ color: "whiteAlpha.600" }}
-                    >
-                      Jobs
-                    </Text>
-                  </a>
-                </Link>
+                <a href="/jobs">
+                  <Text
+                    my={["1.2em", "0em"]}
+                    pr={["2.6em", "0em"]}
+                    color="white"
+                    _hover={{ color: "whiteAlpha.600" }}
+                  >
+                    Jobs
+                  </Text>
+                </a>
 
                 {userInstance.firstname !== "" ? (
-                  <Text my={["1em", "0em"]} pr={["2em", "0em"]} color="white">
+                  <Text mt={["1em", "0em"]} pl={["1em", "0em"]} color="white">
                     {`Hi, ${userInstance.firstname}`}
                   </Text>
                 ) : (

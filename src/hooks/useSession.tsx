@@ -26,7 +26,7 @@ export const useSession = () => {
       i++;
     }
 
-    getUser(UID);
+    UID !== "" && getUser(UID);
   }, [UID]);
 
   return [userInstance];
