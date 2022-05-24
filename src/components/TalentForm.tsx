@@ -31,7 +31,6 @@ export const TalentForm = () => {
       return setErr("Password must be at least 8 characters");
     }
 
-    // TODO: Store Data
     const userData = {
       firstname,
       lastname,

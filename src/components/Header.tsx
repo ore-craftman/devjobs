@@ -14,10 +14,17 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { useSession } from "../hooks/useSession";
+import { useRouter } from "next/router";
 
 export const Header = () => {
+  const router = useRouter();
   const [showNav, setShowNav] = useState(false);
   const [userInstance] = useSession();
+
+  const logoutHandler = () => {
+    document.cookie = "UID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    router.reload();
+  };
 
   return (
     <header>
@@ -70,6 +77,7 @@ export const Header = () => {
                 position={["absolute", "static"]}
                 left="-1em"
                 top="0"
+                style={{ zIndex: "10" }}
               >
                 <Link href="/">
                   <a>
@@ -133,6 +141,7 @@ export const Header = () => {
                     color="gray.700"
                     fontWeight="medium"
                     my={["1em", "0em"]}
+                    onClick={logoutHandler}
                   >
                     Sign Out
                   </Button>
