@@ -10,6 +10,13 @@ import {
   IconButton,
   Stack,
   Spacer,
+  Alert,
+  AlertIcon,
+  Slide,
+  CloseButton,
+  AlertDescription,
+  AlertTitle,
+  AlertDialog,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -19,6 +26,7 @@ import { useRouter } from "next/router";
 export const Header = () => {
   const router = useRouter();
   const [showNav, setShowNav] = useState(false);
+  const [closeAlert, setCloseAlert] = useState(false);
   const [userInstance] = useSession();
 
   const logoutHandler = () => {
@@ -28,6 +36,36 @@ export const Header = () => {
 
   return (
     <header>
+      {!closeAlert && (
+        <Box>
+          {userInstance.status === false && (
+            <Slide in={!userInstance.status} style={{ zIndex: "10" }}>
+              <Alert
+                status="info"
+                variant="left-accent"
+                position="absolute"
+                top="5.5em"
+                w={["97%", "50%", "40%"]}
+                right="0"
+                boxShadow="xl"
+                fontWeight="medium"
+                style={{ zIndex: "10" }}
+              >
+                <AlertIcon />
+
+                <Box>
+                  <AlertTitle fontSize="14px">Confirm your email</AlertTitle>
+                  <Text fontSize="sm">{`Hi, ${userInstance.firstname} Kindly check your mailbox for email confimation link to activate your account`}</Text>
+                </Box>
+
+                <Spacer />
+
+                <CloseButton onClick={() => setCloseAlert(true)} />
+              </Alert>
+            </Slide>
+          )}
+        </Box>
+      )}
       <Box
         pt="2rem"
         pb="3rem"
@@ -45,11 +83,11 @@ export const Header = () => {
                 </a>
               </Link>
             </Box>
-
+            <Spacer />
             <Box
               display="flex"
               ml={["1em", "auto"]}
-              w={["50%", "50%", "45%"]}
+              w={["50%", "60%", "50%"]}
               justifyContent={["end", "space-between"]}
               alignItems="center"
             >
@@ -122,6 +160,19 @@ export const Header = () => {
                   </Link>
                 )}
 
+                {userInstance.keyMaster && (
+                  <a href="/jobs/keymaster/add">
+                    <Text
+                      my={["1.2em", "0em"]}
+                      pr={["2.6em", "0em"]}
+                      color="white"
+                      _hover={{ color: "whiteAlpha.600" }}
+                    >
+                      Post Job
+                    </Text>
+                  </a>
+                )}
+
                 {userInstance.firstname === "" ? (
                   <Link href="/auth/signup">
                     <a>
@@ -137,7 +188,7 @@ export const Header = () => {
                   </Link>
                 ) : (
                   <Button
-                    bgColor="white"
+                    bgColor="orange.400"
                     color="gray.700"
                     fontWeight="medium"
                     my={["1em", "0em"]}

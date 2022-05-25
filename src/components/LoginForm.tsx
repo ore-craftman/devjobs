@@ -15,9 +15,8 @@ export const LoginForm = () => {
     e.preventDefault();
     setInitLoader(true);
     const endpoint = process.env.NEXT_PUBLIC_USERS_ENDPOINT;
-    console.log({ ENDP: `${endpoint}/auth` });
-    const res = await axios.post(`${endpoint}/auth`, { email, password });
 
+    const res = await axios.post(`${endpoint}/auth`, { email, password });
     if (res.status === 200) {
       const { status, data } = res.data;
 
@@ -29,12 +28,12 @@ export const LoginForm = () => {
         document.cookie = `UID=${
           data._id
         }; expires=${date.toUTCString()}; path=/`;
-        router.push("/jobs");
+        return router.push("/jobs");
       }
     } else {
       setErr("Oops.. something went wrong");
+      setInitLoader(false);
     }
-    setInitLoader(false);
   };
 
   return (
@@ -46,10 +45,11 @@ export const LoginForm = () => {
             status="warning"
             position="absolute"
             top="1"
-            w={["100%", "40%", "28%"]}
+            w={["97%", "40%", "28%"]}
             right="0"
             boxShadow="xl"
             fontWeight="medium"
+            style={{ zIndex: "10" }}
           >
             <AlertIcon />
             {err}

@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   Flex,
   Box,
@@ -10,73 +9,41 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { SimpleInput } from "./Input/SimpleInput";
-import { useRouter } from "next/router";
+import { useCreateUser } from "../hooks/useCreateUser";
 
 export const TalentForm = () => {
-  const router = useRouter();
-
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [initLoader, setInitLoader] = useState(false);
-  const [err, setErr] = useState(null);
+
+  const { err, createHandler, initLoader } = useCreateUser();
 
   const signupHandler = async (e) => {
     e.preventDefault();
-    setInitLoader(true);
 
-    if (password.length < 8) {
-      setInitLoader(false);
-      return setErr("Password must be at least 8 characters");
-    }
-
-    const userData = {
+    createHandler({
       firstname,
       lastname,
       email,
       password,
-      keyMaster: false,
-    };
-
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_USERS_ENDPOINT}/create`,
-      userData
-    );
-
-    if (res.status === 200) {
-      const { status, data } = res.data;
-
-      if (status !== "OK") {
-        setErr(data);
-      } else {
-        let date = new Date();
-        date.setTime(date.getTime() + 30 * 24 * 60 * 60 * 1000);
-        document.cookie = `UID=${
-          data._id
-        }; expires=${date.toUTCString()}; path=/`;
-        router.push("/jobs");
-      }
-    } else {
-      setErr("Oops.. something went wrong");
-    }
-
-    setInitLoader(false);
+    });
   };
 
   return (
     <Box>
       {err && (
-        <Slide in={err}>
+        <Slide in={err} style={{ zIndex: "10" }}>
           <Alert
             borderLeftRadius="6px"
             status="warning"
             position="absolute"
             top="1"
-            w={["100%", "40%", "28%"]}
+            w={["97%", "40%", "28%"]}
             right="0"
             boxShadow="xl"
             fontWeight="medium"
+            style={{ zIndex: "10" }}
           >
             <AlertIcon />
             {err}
