@@ -14,11 +14,9 @@ export const LoginForm = () => {
   const siginHandler = async (e) => {
     e.preventDefault();
     setInitLoader(true);
-    console.log({ ENDP: `process.env.NEXT_PUBLIC_USERS_ENDPOINT}/auth` });
-    const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_USERS_ENDPOINT}/auth`,
-      { email, password }
-    );
+    const endpoint = process.env.NEXT_PUBLIC_USERS_ENDPOINT;
+    console.log({ ENDP: `${endpoint}/auth` });
+    const res = await axios.post(`${endpoint}/auth`, { email, password });
 
     if (res.status === 200) {
       const { status, data } = res.data;
