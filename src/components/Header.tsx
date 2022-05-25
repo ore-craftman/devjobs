@@ -39,30 +39,32 @@ export const Header = () => {
       {!closeAlert && (
         <Box>
           {userInstance.status === false && (
-            <Slide in={!userInstance.status} style={{ zIndex: "10" }}>
-              <Alert
-                status="info"
-                variant="left-accent"
-                position="absolute"
-                top="5.5em"
-                w={["97%", "50%", "40%"]}
-                right="0"
-                boxShadow="xl"
-                fontWeight="medium"
-                style={{ zIndex: "10" }}
-              >
-                <AlertIcon />
+            <Box>
+              <Slide in={!userInstance.status}>
+                <Alert
+                  status="info"
+                  variant="left-accent"
+                  position="absolute"
+                  top="5.5em"
+                  w={["97%", "50%", "40%"]}
+                  right="0"
+                  boxShadow="xl"
+                  fontWeight="medium"
+                  style={{ zIndex: "10" }}
+                >
+                  <AlertIcon />
 
-                <Box>
-                  <AlertTitle fontSize="14px">Confirm your email</AlertTitle>
-                  <Text fontSize="sm">{`Hi, ${userInstance.firstname} Kindly check your mailbox for email confimation link to activate your account`}</Text>
-                </Box>
+                  <Box>
+                    <AlertTitle fontSize="14px">Confirm your email</AlertTitle>
+                    <Text fontSize="sm">{`Hi, ${userInstance.firstname} Kindly check your mailbox for email confimation link to activate your account`}</Text>
+                  </Box>
 
-                <Spacer />
+                  <Spacer />
 
-                <CloseButton onClick={() => setCloseAlert(true)} />
-              </Alert>
-            </Slide>
+                  <CloseButton onClick={() => setCloseAlert(true)} />
+                </Alert>
+              </Slide>
+            </Box>
           )}
         </Box>
       )}

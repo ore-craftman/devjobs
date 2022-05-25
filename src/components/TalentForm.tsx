@@ -33,7 +33,7 @@ export const TalentForm = () => {
   return (
     <Box>
       {err && (
-        <Slide in={err} style={{ zIndex: "10" }}>
+        <Slide in={err}>
           <Alert
             borderLeftRadius="6px"
             status="warning"
