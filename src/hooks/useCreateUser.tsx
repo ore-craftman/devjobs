@@ -8,7 +8,7 @@ interface PropShema {
   email: string;
   password: string;
   companyName?: string;
-  companyURL?: string;
+  companyUrl?: string;
 }
 
 export const useCreateUser = () => {

@@ -9,7 +9,7 @@ export const ComapnyForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
-  const [companyURL, setCompanyURL] = useState("");
+  const [companyUrl, setCompanyUrl] = useState("");
 
   const { err, createHandler, initLoader } = useCreateUser();
 
@@ -21,7 +21,7 @@ export const ComapnyForm = () => {
       email,
       password,
       companyName,
-      companyURL,
+      companyUrl,
     });
   };
   return (
@@ -108,8 +108,8 @@ export const ComapnyForm = () => {
           label="Company URL"
           holder="meta.com"
           type="text"
-          value={companyURL}
-          stateHandler={setCompanyURL}
+          value={companyUrl}
+          stateHandler={setCompanyUrl}
         />
 
         <Button
