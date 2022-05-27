@@ -19,6 +19,8 @@ const ViewJob = ({ job }) => {
   const router = useRouter();
   const { jobId } = router.query;
 
+  console.log({ jobId });
+
   return (
     <Box>
       <WrapperMin>

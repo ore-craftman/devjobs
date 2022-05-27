@@ -9,6 +9,9 @@ import {
   FormLabel,
   Textarea,
   Button,
+  Slide,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { MdCategory, MdLocationOn, MdAttachMoney } from "react-icons/md";
 import { IoEyeSharp, IoArrowForwardOutline } from "react-icons/io5";
@@ -31,6 +34,8 @@ export const JobForm = ({
   tasks,
   title,
   formHandler,
+  initLoader,
+  err,
 }: JobSchema) => {
   const [jobTitle, setJobTitle] = useState(jobName ? jobName : "");
   const [jobType, setJobType] = useState(type ? type : "");
@@ -83,6 +88,25 @@ export const JobForm = ({
   return (
     <WrapperMax>
       <Box mt="1em">
+        {err && (
+          <Slide in={err}>
+            <Alert
+              borderLeftRadius="6px"
+              status="warning"
+              position="absolute"
+              top="1"
+              w={["97%", "40%", "28%"]}
+              right="0"
+              boxShadow="xl"
+              fontWeight="medium"
+              style={{ zIndex: "10" }}
+            >
+              <AlertIcon />
+              {err}
+            </Alert>
+          </Slide>
+        )}
+
         <Heading as="h4" fontSize="lg" mt="1.2em" mb="4px" color="gray.400">
           {title}
         </Heading>
@@ -338,6 +362,7 @@ export const JobForm = ({
                 bgColor="bsBlue"
                 colorScheme="bgColor"
                 color="white"
+                isLoading={initLoader}
               >
                 <Box mr="3px">Post Job</Box>
                 <IoArrowForwardOutline />

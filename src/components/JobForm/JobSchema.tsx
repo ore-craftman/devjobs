@@ -11,4 +11,6 @@ export interface JobSchema {
   tasks?: string[];
   title: string;
   formHandler: any;
+  initLoader?: boolean;
+  err?: any;
 }

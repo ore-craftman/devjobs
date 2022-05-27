@@ -12,11 +12,8 @@ import {
   Spacer,
   Alert,
   AlertIcon,
-  Slide,
   CloseButton,
-  AlertDescription,
   AlertTitle,
-  AlertDialog,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useState } from "react";
@@ -40,30 +37,28 @@ export const Header = () => {
         <Box>
           {userInstance.status === false && (
             <Box>
-              <Slide in={!userInstance.status}>
-                <Alert
-                  status="info"
-                  variant="left-accent"
-                  position="absolute"
-                  top="5.5em"
-                  w={["97%", "50%", "40%"]}
-                  right="0"
-                  boxShadow="xl"
-                  fontWeight="medium"
-                  style={{ zIndex: "10" }}
-                >
-                  <AlertIcon />
+              <Alert
+                status="info"
+                variant="left-accent"
+                position="absolute"
+                top="5.5em"
+                w={["97%", "50%", "40%"]}
+                right="0"
+                boxShadow="xl"
+                fontWeight="medium"
+                style={{ zIndex: "10" }}
+              >
+                <AlertIcon />
 
-                  <Box>
-                    <AlertTitle fontSize="14px">Confirm your email</AlertTitle>
-                    <Text fontSize="sm">{`Hi, ${userInstance.firstname} Kindly check your mailbox for email confimation link to activate your account`}</Text>
-                  </Box>
+                <Box>
+                  <AlertTitle fontSize="14px">Confirm your email</AlertTitle>
+                  <Text fontSize="sm">{`Hi, ${userInstance.firstname} Kindly check your mailbox for email confimation link to activate your account`}</Text>
+                </Box>
 
-                  <Spacer />
+                <Spacer />
 
-                  <CloseButton onClick={() => setCloseAlert(true)} />
-                </Alert>
-              </Slide>
+                <CloseButton onClick={() => setCloseAlert(true)} />
+              </Alert>
             </Box>
           )}
         </Box>
@@ -163,16 +158,18 @@ export const Header = () => {
                 )}
 
                 {userInstance.keyMaster && (
-                  <a href="/jobs/keymaster/add">
-                    <Text
-                      my={["1.2em", "0em"]}
-                      pr={["2.6em", "0em"]}
-                      color="white"
-                      _hover={{ color: "whiteAlpha.600" }}
-                    >
-                      Post Job
-                    </Text>
-                  </a>
+                  <Link href="/jobs/keymaster/add">
+                    <a>
+                      <Text
+                        my={["1.2em", "0em"]}
+                        pr={["2.6em", "0em"]}
+                        color="white"
+                        _hover={{ color: "whiteAlpha.600" }}
+                      >
+                        Post Job
+                      </Text>
+                    </a>
+                  </Link>
                 )}
 
                 {userInstance.firstname === "" ? (
