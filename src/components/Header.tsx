@@ -187,10 +187,11 @@ export const Header = () => {
                   </Link>
                 ) : (
                   <Button
-                    bgColor="orange.400"
-                    color="gray.700"
+                    bgColor="gray.800"
+                    color="white"
                     fontWeight="medium"
                     my={["1em", "0em"]}
+                    _hover={{ bgColor: "gray.700" }}
                     onClick={logoutHandler}
                   >
                     Sign Out
