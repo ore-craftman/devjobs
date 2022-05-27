@@ -39,13 +39,13 @@ export const JobCard = ({ data }: any) => {
                 </Box>
                 <Box
                   width={{ md: "100%" }}
-                  borderRadius="8px"
+                  borderRadius="6px"
                   py="2em"
                   px="1.3em"
                   backgroundColor="white"
-                  boxShadow="xl"
+                  boxShadow="lg"
                   border="1px"
-                  borderColor="gray.50"
+                  borderColor="gray.100"
                   _dark={{ backgroundColor: "gray.700", border: "none" }}
                 >
                   <HStack my="4px">
