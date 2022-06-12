@@ -28,7 +28,11 @@ export const Header = () => {
 
   const logoutHandler = () => {
     document.cookie = "UID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    router.reload();
+
+    router.replace("/");
+    if (router.pathname === "/") {
+      router.reload();
+    }
   };
 
   return (
